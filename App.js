@@ -1,5 +1,6 @@
 // App.js
 import { NavigationContainer } from '@react-navigation/native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import MainStack from './navigators/MainStack';
@@ -12,7 +13,8 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}>
         <Tab.Screen name="Home" component={MainStack} />
         <Tab.Screen name="Explore" component={MoreStack} />
@@ -21,5 +23,7 @@ export default function App() {
         <Tab.Screen name="Profile" component={ProfileStack} />
       </Tab.Navigator>
     </NavigationContainer>
+    </GestureHandlerRootView>
+    
   );
 }

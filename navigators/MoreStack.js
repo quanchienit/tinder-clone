@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
-import { MoreScreen } from '../features/main/more';
+import { MoreScreen } from '../features/more';
 export default function KhamPhaStack() {
   return (
     <Stack.Navigator>
