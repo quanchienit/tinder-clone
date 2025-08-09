@@ -47,6 +47,9 @@ const MainScreen = () => {
     console.log("❤️ Liked", user.name);
     setCurrentIndex((prev) => prev + 1);
   };
+  const onSwipeUp = (user) => {
+  console.log("Super Like:", user.name);
+};
   const renderInfo = () => {
     switch (index) {
       case 0:
@@ -67,7 +70,7 @@ const MainScreen = () => {
     <View style={styles.container}>
       {users
         .slice(currentIndex)
-        .reverse()
+        .reverse()  
         .map((user) => (
           <UserCard
             key={user.id}

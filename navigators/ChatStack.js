@@ -1,6 +1,6 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainScreen } from '../features/main';
-import DetailScreen from '../features/main/DetailScreen';
+import DetailScreen from '../features/main/UserDetailScreen';
 import ChatScreen from '../features/chat/ChatScreen'; // Assuming you have a ChatScreen component
 
 const Stack = createNativeStackNavigator();

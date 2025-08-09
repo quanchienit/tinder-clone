@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import DetailScreen from '../features/main/DetailScreen';
+import DetailScreen from '../features/main/UserDetailScreen';
 import  LikeScreen  from '../features/like/LikeScreen';
 
 const Stack = createNativeStackNavigator();

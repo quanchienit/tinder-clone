@@ -1,14 +1,15 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { MainScreen } from '../features/main';
-import DetailScreen from '../features/main/DetailScreen';
+import UserDetailScreen from '../features/main/UserDetailScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function MainStack() {
   return (
     <Stack.Navigator>
-      <Stack.Screen  name="HomeMain" component={MainScreen} options={{ headerShown: false }} />
-    <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="HomeMain" component={MainScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="UserDetail" component={UserDetailScreen}
+        options={{ presentation: 'transparentModal', animation: 'slide_from_bottom' }} />
     </Stack.Navigator>
   );
 }
