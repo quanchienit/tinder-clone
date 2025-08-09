@@ -9,7 +9,7 @@ export default function MainStack() {
     <Stack.Navigator>
       <Stack.Screen name="HomeMain" component={MainScreen} options={{ headerShown: false }} />
       <Stack.Screen name="UserDetail" component={UserDetailScreen}
-        options={{ presentation: 'transparentModal', animation: 'slide_from_bottom' }} />
+        options={{ headerShown:'false', presentation: 'modal', animation: 'slide_from_bottom' }}/>
     </Stack.Navigator>
   );
 }

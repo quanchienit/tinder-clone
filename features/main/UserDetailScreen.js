@@ -8,7 +8,7 @@ export default function UserDetailScreen() {
   const { user } = route.params;
 
   return (
-    <View style={styles.overlay}>
+
       <View style={styles.container}>
         <Image source={{ uri: user.photo }} style={styles.image} />
         <Text style={styles.name}>{user.name}</Text>
@@ -18,7 +18,6 @@ export default function UserDetailScreen() {
           <Text style={{ color: '#fff', fontSize: 16 }}>Đóng</Text>
         </Pressable>
       </View>
-    </View>
   );
 }
 
@@ -32,8 +31,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    padding: 20,
-    alignItems: 'center'
+    padding: 0,
+    alignItems: 'center',
+    width:'100%',
+    height:'100%'
   },
   image: {
     width: 200,

@@ -19,9 +19,9 @@ const users= [
   },
   {
     id: "2",
-    name: "Anna",
+    name: "Baby",
     age: 24,
-    distance: 5, // km
+    distance: 10, // km
     bio: "Thích du lịch và cà phê ☕",
     interests: ["Du lịch", "Cà phê", "Chó mèo"],
     photos: [
@@ -47,25 +47,7 @@ const MainScreen = () => {
     console.log("❤️ Liked", user.name);
     setCurrentIndex((prev) => prev + 1);
   };
-  const onSwipeUp = (user) => {
-  console.log("Super Like:", user.name);
-};
-  const renderInfo = () => {
-    switch (index) {
-      case 0:
-        return <Text style={styles.infoText}>{user.distance} km</Text>;
-      case 1:
-        return <Text style={styles.infoText}>{user.bio}</Text>;
-      case 2:
-        return (
-          <Text style={styles.infoText}>{user.interests?.join(", ")}</Text>
-        );
-      default:
-        return (
-          <Text style={styles.infoText}>{user.interests?.join(", ")}</Text>
-        );
-    }
-  };
+
   return (
     <View style={styles.container}>
       {users

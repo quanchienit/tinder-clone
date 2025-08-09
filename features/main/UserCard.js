@@ -1,6 +1,18 @@
 import React, { useState } from "react";
-import { View, Text, Image, StyleSheet, Pressable, Dimensions } from "react-native";
-import Animated, { useSharedValue, useAnimatedStyle, withSpring, runOnJS } from "react-native-reanimated";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  Pressable,
+  Dimensions,
+} from "react-native";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withSpring,
+  runOnJS,
+} from "react-native-reanimated";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import InfoBottomSheet from "./InfoBottomSheet";
 import SwipeButtons from "./SwipeButtons";
@@ -8,7 +20,6 @@ import { useNavigation } from "@react-navigation/native";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SWIPE_THRESHOLD = 120;
-
 
 const UserCard = ({ user, onSwipeLeft, onSwipeRight }) => {
   const navigation = useNavigation();
@@ -28,23 +39,29 @@ const UserCard = ({ user, onSwipeLeft, onSwipeRight }) => {
 
   const renderInfo = () => {
     switch (index) {
-      case 0: return `${user.distance} km`;
-      case 1: return user.bio;
-      case 2: return user.interests?.join(", ");
-      default: return user.interests?.join(", ");
+      case 0:
+        return `${user.distance} km`;
+      case 1:
+        return user.bio;
+      case 2:
+        return user.interests?.join(", ");
+      default:
+        return user.interests?.join(", ");
     }
   };
 
   const panGesture = Gesture.Pan()
     .onUpdate((e) => {
       translateX.value = e.translationX;
-      translateY.value = e.translationY
+      translateY.value = e.translationY;
       rotate.value = translateX.value / 20;
     })
     .onEnd(() => {
       if (translateX.value > SWIPE_THRESHOLD) {
         translateX.value = withSpring(SCREEN_WIDTH + 100);
-        cardOpacity.value = withSpring(0, {}, () => runOnJS(onSwipeRight)(user));
+        cardOpacity.value = withSpring(0, {}, () =>
+          runOnJS(onSwipeRight)(user)
+        );
       } else if (translateX.value < -SWIPE_THRESHOLD) {
         translateX.value = withSpring(-SCREEN_WIDTH - 100);
         cardOpacity.value = withSpring(0, {}, () => runOnJS(onSwipeLeft)(user));
@@ -54,13 +71,21 @@ const UserCard = ({ user, onSwipeLeft, onSwipeRight }) => {
       }
     });
 
-  const tapGesture = Gesture.Tap().onEnd((e) => {
-    if (e.x > SCREEN_WIDTH / 2) handleNext();
-    else handlePrev();
-  });
+  const tapGesture = Gesture.Tap()
+    .maxDuration(250) // tránh giữ lâu bị hiểu là pan
+    .onEnd((e) => {
+      if (e.x > SCREEN_WIDTH / 2) {
+        runOnJS(handleNext)();
+      } else {
+        runOnJS(handlePrev)();
+      }
+    });
 
   const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: translateX.value }, { rotate: `${rotate.value}deg` }],
+    transform: [
+      { translateX: translateX.value },
+      { rotate: `${rotate.value}deg` },
+    ],
     opacity: cardOpacity.value,
   }));
 
@@ -72,11 +97,14 @@ const UserCard = ({ user, onSwipeLeft, onSwipeRight }) => {
           <View style={styles.overlay}>
             <Text style={styles.name}>
               {user.name}, {user.age}{" "}
-              <Text style={styles.viewMore} onPress={() => navigation.navigate('UserDetail', {user})}>
+              <Text
+                style={styles.viewMore}
+                onPress={() => navigation.navigate("UserDetail", { user })}
+              >
                 Xem thêm
               </Text>
             </Text>
-            <Text  style={styles.infoText}>{renderInfo()}</Text>
+            <Text style={styles.infoText}>{renderInfo()}</Text>
           </View>
         </Animated.View>
       </GestureDetector>
@@ -110,25 +138,35 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   overlay: {
+    width: "100%",
+    height: "20%",
     position: "absolute",
-    bottom: 20,
-    left: 20,
-    right: 20,
+    backgroundColor: "#ffffffff",
+    opacity: 0.5,
+    bottom: 0,
+    left: 0,
+    right: 0,
   },
   name: {
     fontSize: 22,
     fontWeight: "bold",
     color: "#fff",
+    bottom: 20,
+    left: 20,
+    right: 20,
+    marginTop: 30,
   },
   infoText: {
     fontSize: 16,
     color: "#fff",
     marginTop: 5,
+    bottom: 20,
+    left: 20,
   },
   viewMore: {
     fontSize: 14,
     color: "#FFD700",
-    alignSelf:"flex-end"
+    alignSelf: "flex-end",
   },
 });
 

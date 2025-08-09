@@ -10,9 +10,6 @@ const SwipeButtons = ({ onUndo, onDislike, onSuperLike, onLike, onMessage }) => 
       <TouchableOpacity onPress={onDislike} style={[styles.btn, { backgroundColor: "#FF4E50" }]}>
         <Text>✖</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={onSuperLike} style={[styles.btn, { backgroundColor: "#1E90FF" }]}>
-        <Text>★</Text>
-      </TouchableOpacity>
       <TouchableOpacity onPress={onLike} style={[styles.btn, { backgroundColor: "#4CAF50" }]}>
         <Text>❤</Text>
       </TouchableOpacity>
@@ -35,7 +32,7 @@ const styles = StyleSheet.create({
   btn: {
     width: 50,
     height: 50,
-    borderRadius: 25,
+    borderRadius: 35,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "#000",
